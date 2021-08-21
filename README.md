@@ -1,5 +1,5 @@
 # Learn Computer Science 
-> Best way to learn is to teach yourself
+> Best way to learn is to teach others 
 ### Course List 
 - Algorthim
 - Operator System
