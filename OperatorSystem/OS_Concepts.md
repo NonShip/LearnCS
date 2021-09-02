@@ -20,5 +20,15 @@ which gathers together multiple CPUs. Clustered computers share storage and are 
 ##### 1.4 OS operation
 ##### 1.4.2 Dual-Mode and Multimode operation
 In order to ensure the proper execution of the system, we must to distinguish user mode and kernel mode which need hardware support that set mode bit.  
-##### 1.4.3 Timer
-To make sure that the OS maintains control over the CPU, if a user program get stuck in an infinite loop and never return control to OS. A timer can be set to interrupt the computer after a specified period.
+##### 1.4.3 Timer  
+To make sure that the OS maintains control over the CPU, if a user program get stuck in an infinite loop and never return control to OS. A timer can be set to interrupt the computer after a specified period.  
+
+----
+#### 2.1 OS services
+1. **User interface** which interaction with OS
+2. **Program execution** system must be able to load a program into memory and to run that program. 
+3. **I/O operations** for efficiency and protection, users usually cannot control I/O devices directly.
+4. **File-system manipulation**
+5. **Communications** different processes need to exchange information with other process. **shared memory** and **message passing**
+6. **Error detection**
+7. **Resource allocation**
