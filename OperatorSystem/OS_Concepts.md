@@ -32,3 +32,58 @@ To make sure that the OS maintains control over the CPU, if a user program get s
 5. **Communications** different processes need to exchange information with other process. **shared memory** and **message passing**
 6. **Error detection**
 7. **Resource allocation**
+8. **Logging**
+9. **Protection and security**
+
+##### 2.3.3 Types of System calls
+###### 2.3.3.1 Process Control
+running program needs to halt its execution either normally(end()) or abnormally(abort()). If the program runs into a problem and causes an error trap, a **dump** memory is taken and error message generated, the dump will be written to a special log file on disk and may be examined by a debugger.
+##### 2.8 OS Structure
+###### 2.8.1 Monolithic Structure
+**Monolithic structure** run entirely in kernel mode in a single address space. it is difficult to implement and extend. Monolithic kernel do have a distinct performance advantage.  
+**Microkernels** remove all noessential components from the kernel and implementing them as user-level programs that reside in separate address spaces. It makes extending the OS easier. Different app communicate indirectly by exchangeing messages with the microkernel. Microkernel provides more security and reliability.  
+**LKMs(loadable kernel modules** the kernel has a set of core components and can link in additional services via modules, either at boot time or during run time.  
+##### 3.1 Process
+###### 3.1.3 
+PCB(process control block):
+1. **Process state**
+2. **Program counter**
+3. **CPU registers** 
+4. **CPU-scheduling information**
+5. **Memory-management information** 
+6. **Accounting information** 
+7. **I/O satus information**
+##### 3.2 Process Scheduling
+Each CPU can run one process at a time. Sometimes a process needs to request I/O, since devices run significantly slower than processors, CPU will entry into a loop to wait the I/O finished. This problem call **I/O-bound process** spends more of its time doing I/O than doing computations. In contrast, **CPU-bound process** .
+###### 3.2.1 Scheduline Queue
+To solved the wasted rescourse of CPU, when processes entry the system, they are put into a **read queue** where they are ready and waiting to execute on a CPU's core. **wait queue** for these waiting processes.
+###### 3.2.2 CPU Scheduling
+**CPU scheduler** is to select from among the processes that are in ready queue and allocate a CPU core to one of them. CPU scheduler executes at least every 100 milliseconds.
+###### 3.2.3 Context Switch
+Switching CPU core to another process requires save currently process and restore a different process. In xv6, CPU struct and proc struct both have the context struct to save registers. Context-switch times are highly dependent on hardware support.
+###### 3.3.2 Process Termination
+**zombie process** child process termination but whose parent process has not yet called wait().
+##### 3.5 Shared-Memory Systems
+Buffers can solved the shared-memory probolem. **unbounded buffer** place no limit on the size of the buffer, producer can always produce new items. **bounded buffer** a fixed buffer size.
+##### 3.6 Message-Passing Systems
+###### 3.6.1 Naming
+***direct communication***  
+If differents processes want to communicate, they must send messages to and receive messages from each other by **communication link**.
+```C
+send(P, message);
+receive(Q,message);
+```
+1. A link is established betweent every process that want to communicate. The processes need to know each other identity to communicate.
+2. Between each pair of processes, there exists exactly one link.
+Disadvantage: communication need to know each other ID, and is limited modularity 
+
+ 
+***indirect communication***  
+**messages** are sent to and received from mailboxes or ports. Each mailbox has a unique ID, two processes can communicate only if they have a shared mailbox.
+```C
+send(A, message); send a message to mailbox A
+receive(A, message); receive a message from mailbox A  
+```
+1. A link is established between a pair of processes only if both members of the pair have a shared mailbox
+2. A link may be associated with more than two processes.
+
