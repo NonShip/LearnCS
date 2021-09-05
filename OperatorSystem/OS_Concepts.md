@@ -87,3 +87,44 @@ receive(A, message); receive a message from mailbox A
 1. A link is established between a pair of processes only if both members of the pair have a shared mailbox
 2. A link may be associated with more than two processes.
 
+###### 3.6.2 Synchronization
+**Blocking send** sending process is blocked until message is received by the receiving process or by the mailbox.  
+**Nonblocking send** sending process sends message and resumes operation
+**Blocking receive** receiver blocks until a message is available
+**Nonblocking receive** receiver retrieve either a vaild message or a null
+###### 3.6.3 Buffering
+**Zero capacity** send must block until the recipient receives the message
+**Bounded capacity** the queue has finite length. If link is full, sender must block
+**Unbounded capacity** any number of messages can wait in it.
+##### 3.7 Pipe
+###### 3.7.4.2 Named Pipes
+Ordinary pipes will exist when the processes have finished communicated and have terminated. **Named Pipe** provides a bidirectional communication and no parent-child relationship is required. Once named pipe is established, several processes can use it for communication. In unix system, named pipe are referred to as FIFOs. **mkfifo()** is the system call. it's a half-duplex transmission, if data must travel in both directions, two FIFOs are used.
+##### 3.8 Communication in Client-Server Systems
+###### 3.8.1 Sockets
+A socket is defined as an endpoint for communication. Server waits for incoming client requests by listening to a specified port(below 1024). Client process initiates a request for a connection, it is assigned a port by its host computer(above 1024). e.g {host: 145.86.5.20 host socket: 145.86.5.20:1635} {web server: 161.25.19.8   web server socket: 161.25.19.8}
+##### 4.1 Threads & Concurrency
+A thread is a basic unit of CPU utilization. It shared with other threads belonging to the same process its code section, data section, and other OS resuources. It has own thread ID, PC, register set, and a stack.  
+why not to create a new process? resource intensive and time consuming
+##### 4.2 Multicore Programming
+**concurrency** more than one task by allowing all the tasks to make progress.  
+**parallelism** more than one task simulaneously.
+###### 4.2.2 Types of Parallelism
+**Data parallelism** distribute subsets of the same data across multiple computing cores and performing the same operation on each core.  
+**Task parallelism** Each thread is performing a unique operation.  
+**asynchronous threading** parent creat a child thread, the parent resumes its execution, child and parent execute concurrently and independently of one other.  
+**synchronous threading** parent creat a child thread, parent must wait for its child to terminate before it resumes.  
+##### 4.5 Implicit Threading
+###### 4.5.1 Thread Pool
+Althought creating a separate thread is certainly superior to creating a separate process, it has potential problems. 
+1. amount of time required to create the thread and thread will be discared once it has completed.
+2. Unlimited threads counld exhaust system resources.  
+
+**thread pool** create a number of threads at start-up and place them into a pool. when a request to thread pool, if there is an available thread in the pool, it is awakened, and the request is serviced immediately. If the pool contains no available thread, the task is queued until one becomes free.    
+1. Servicing a requese with an existing thread is often faster than waiting to creat a thread.
+2. Limit the number of threads
+###### 4.6.3 Thread Cancellation
+involve terminating a thread before it has completed.  
+**target thread** a thread that is to be canceled. 
+1. **Asynchronous cancellation** terminate the target thread immediately
+2. **Deferred cancellation** check whether it should terminate before terminate.
+
