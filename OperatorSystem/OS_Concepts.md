@@ -127,4 +127,16 @@ involve terminating a thread before it has completed.
 **target thread** a thread that is to be canceled. 
 1. **Asynchronous cancellation** terminate the target thread immediately
 2. **Deferred cancellation** check whether it should terminate before terminate.
-##### 5
+##### 5.3 Scheduling Algorithms
+1. **CPU utilization** keep CPU as busy as possible 
+2. **Throughput** the number of processes that are completed per time unit
+3. **Turnaround time** the interval from the time of submission of a process to the time of completion
+4. **Waiting time** the process spend time 
+5. **Response time** the time it takes to start responding
+###### 5.3.1 First-come, First-Served
+The process that requests the CPU first is allocated the CPU first.  
+The average waiting time will be long
+###### 5.3.2 Shortest-Job-First
+The smallest next CPU burst will allocate a CPU. But we may not know the length of the next CPU burst.
+###### 5.3.3 Round-Robin
+time quantum. The CPU scheduler goes around the ready queue, allocating the CPU to each process for a time interval of up to 1 time quantum. If the time quantum is extremely small, the RR result in a large number of context switch, in contrast, will be as same as FIFS.
