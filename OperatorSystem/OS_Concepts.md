@@ -127,4 +127,4 @@ involve terminating a thread before it has completed.
 **target thread** a thread that is to be canceled. 
 1. **Asynchronous cancellation** terminate the target thread immediately
 2. **Deferred cancellation** check whether it should terminate before terminate.
-
+##### 5
