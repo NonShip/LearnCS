@@ -12,5 +12,5 @@ Book: Introduction to Algorthim
 
 ##### Operator System
 Course: [Mit6.S081-Fall 2020](https://pdos.csail.mit.edu/6.S081/2020/schedule.html)  
-Book: Modern Operating System
+Book: Operating System Concept
 
