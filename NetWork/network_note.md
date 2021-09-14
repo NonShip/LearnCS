@@ -48,3 +48,17 @@ To decrease delay -> **DNS cache**
 **Dymamic Adaptive Streaming over HTTP(DASH)** video is encoded into different version with each version has different bit rate and different quality level. The client can selects different chunks one at a time.  
 ###### 2.6.3 Content Distribution Networks
 To solve the throughout of problems between client an server. **Content Distribution Networks(CDNs)** a CDN manages servers in multiple geographically distributed locations, stroes copies of the videos.
+###### 2.7.1 Socket Programming with UDP
+client must send a server IP and port to connect with server. Server init a port then have a loop to receive the message from client.
+###### 2.7.2 Socket Programming with TCP
+The server and client first need to handshake and establish a TCP connection. This need the client socket address(IP and prot number) and server socket address(IP and prot number). Then switch data between server and client by TCP connection.
+###### 3.1.2 Overview of the Transport Layer in the Internet
+Network layer IP service model does not guarantee segment delivery and orderly delivery of the segments and integrity of the data in segments. IP is an unreliable service. To solve this problem, UDP and TCP is a extend IP's delivery service.  
+UDP: minimal transport-layer services----process-to-process data delivery and error checking.  
+TCP: sending data to receiving process, correctly and in order. **congestion control** prevent TCP connection from swamping the links and routers between communicating hosts with an excessive amount of traffic. UDP transport sand at any rate it pleases.  
+##### 3.2 Multiplexing and Demultiplexing
+**demultiplexing** deliver the data in a transport-layer segment to the correct socker  
+**multiplexing** gather data chunks from different sockets, encapsulating each data chunk with header information to create segments, and pass the segments to network layer.  
+The segment has source port number field and destination port number field, which is a 16-bit number, ranging from 0 to 65535, 0 to 1023 are called well-known port numbers. 
+##### 3.3 UDP
+**User Datagram Protocol(UDP)** take message from application process, attach source and destination port number fields for multiplexing/demultiplexing service, add two other small fields, then pass the segment to network layer. UDP is a good choice for real-time app because need to require a minimun sending rate, tolerate some data loss. 
